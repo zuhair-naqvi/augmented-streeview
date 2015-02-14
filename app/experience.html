@@ -206,15 +206,16 @@
             ];
 
             function initialize() {
-              var fedsquare = new google.maps.LatLng(-37.817813, 144.968773);
+                //-37.82244,144.969512,3a,75y,254.43h,97.26t
+              var ngv = new google.maps.LatLng(-37.82244,144.969512);
               var mapOptions = {
-                center: fedsquare,
-                zoom: 14,
+                center: ngv,
+                zoom: 17,
                 styles: mapStyles,
                 disableDefaultUI: true
               };
 
-                
+
 
               var map = new google.maps.Map(
                   document.getElementById('map-canvas'), mapOptions);
@@ -224,10 +225,10 @@
               var panoramaOptions = {
                 pano: myPanoid,
                 pov: {
-                  heading: 45,
-                  pitch:-2
+                  heading: 75,
+                  pitch:0
                 },
-                zoom: 0,
+                zoom: 0.5,
                 zoomControl: false,
                 addressControl: false,            
                 linksControl: true,
@@ -239,19 +240,60 @@
                 visible:true                
               };
               var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
-
-                var links = panorama.getLinks();
-                links.push({
-                'coffee': 150,
-                'description' : 'Coffee',
-                'pano' : 'entrance',
-                'roadColor': 'blue',
-                'roadOpacity': 0.4
-                });
-
-                panorama.setLinks(links);
-
               map.setStreetView(panorama);
+              google.maps.event.addListener(panorama, 'pano_changed', function() {
+                  panorama.setOptions({
+                    pov: getPanoPov(panorama.getPano())
+                  });
+              });
+            }
+
+            function getPanoPov(panoId){
+                switch (panoId){
+                    case 'Rv_Zd5dpDeEAAAQZWWEn2A':
+                    return {
+                      heading: 75,
+                      pitch:0
+                    };
+                    case 'OSMRXBXPwlcAAAQZX7NbGQ':
+                    return {
+                      heading: 125,
+                      pitch:0
+                    };
+                    case 'xuKFCUbzzFgAAAQZWWEujw':
+                    return {
+                      heading: 110,
+                      pitch:-5
+                    };
+                    case 'nqfRmHR8NYMAAAQZWVImZQ':
+                    return {
+                      heading: 220,
+                      pitch:12
+                    };
+                    case 'GAPEvOsCQ7cAAAQZX8T8JQ':
+                    return {
+                      heading: 60,
+                      pitch:12
+                    };
+                    case '9c405LAkKxQAAAQZX7H8WA':
+                    return {
+                      heading: -200,
+                      pitch:0
+                    };
+                    case 'VT7ElvLeGYoAAAQZX7Na_w':
+                    return {
+                      heading: 195,
+                      pitch:12
+                    };
+                    case 'ZrmtdaiVWq0AAAQZXwxOUg':
+                    return {
+                      heading: 70,
+                      pitch:6
+                    };
+                    default:
+                    console.log(panoId);
+                    return false;
+                }
             }
 
             google.maps.event.addDomListener(window, 'load', initialize);
