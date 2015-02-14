@@ -205,6 +205,8 @@
                 }
             ];
 
+            var sakeRestaurantPoint = new google.maps.LatLng(-37.819671,144.968055);
+
             function initialize() {
                 //-37.82244,144.969512,3a,75y,254.43h,97.26t
               var ngv = new google.maps.LatLng(-37.82244,144.969512);
@@ -239,6 +241,15 @@
                 enableCloseButton: false,
                 visible:true                
               };
+              
+              var sakeMarker = new google.maps.Marker({
+                  position: sakeRestaurantPoint,
+                  map: map,
+                  icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00',
+                  title: 'Sake Japanese Restaurant & Bar'
+              });
+
+
               var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
               map.setStreetView(panorama);
               console.log(panorama.getLinks());
@@ -256,6 +267,15 @@
                     links[i].heading = getPanoLinkHeading(links[i].pano);
                   }
               });
+
+            // window.setInterval(function() {
+            // var pov = panorama.getPov();
+            // pov.heading += 0.1;
+            // panorama.setPov(pov);
+            // }, 1);
+
+
+
 
             }
 
@@ -374,6 +394,8 @@
             }
 
             google.maps.event.addDomListener(window, 'load', initialize);
+
+
         </script>
         <!-- build:js scripts/main.min.js -->
         <script src="scripts/main.js"></script>
