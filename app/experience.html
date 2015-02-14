@@ -241,11 +241,22 @@
               };
               var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
               map.setStreetView(panorama);
+              console.log(panorama.getLinks());
               google.maps.event.addListener(panorama, 'pano_changed', function() {
                   panorama.setOptions({
                     pov: getPanoPov(panorama.getPano())
                   });
               });
+            google.maps.event.addListener(panorama, 'links_changed', function() {
+                  var links =  panorama.getLinks();
+                  console.log(links);
+
+                  for (var i in links) {
+                    links[i].description = getPanoLinkName(links[i].pano);
+                    links[i].heading = getPanoLinkHeading(links[i].pano);
+                  }
+              });
+
             }
 
             function getPanoPov(panoId){
@@ -257,8 +268,8 @@
                     };
                     case 'OSMRXBXPwlcAAAQZX7NbGQ':
                     return {
-                      heading: 125,
-                      pitch:0
+                      heading: 155,
+                      pitch:-3
                     };
                     case 'xuKFCUbzzFgAAAQZWWEujw':
                     return {
@@ -292,6 +303,72 @@
                     };
                     default:
                     console.log(panoId);
+                    return false;
+                }
+            }
+
+            function getPanoLinkName(panoId)
+            {
+                switch (panoId){
+                    case 'Rv_Zd5dpDeEAAAQZWWEn2A':
+                    return 'Federation Square';
+
+                    case 'OSMRXBXPwlcAAAQZX7NbGQ':
+                    return 'Feel like a coffee?';
+
+                    case 'xuKFCUbzzFgAAAQZWWEujw':
+                    return 'How about fine Japanese food?';
+
+                    case 'nqfRmHR8NYMAAAQZWVImZQ':
+                    return 'NGV';
+
+                    case 'GAPEvOsCQ7cAAAQZX8T8JQ':
+                    return 'Room 1';
+
+                    case '9c405LAkKxQAAAQZX7H8WA':
+                    return 'Room 2';
+
+                    case 'VT7ElvLeGYoAAAQZX7Na_w':
+                    return 'Room 3';
+
+                    case 'ZrmtdaiVWq0AAAQZXwxOUg':
+                    return 'The Golden Carousel';
+
+                    default:
+                    console.log(panoId);
+                    return false;
+                }
+            }
+
+            function getPanoLinkHeading(panoId)
+            {
+                switch (panoId){
+                    case 'Rv_Zd5dpDeEAAAQZWWEn2A':
+                    return 180;
+
+                    case 'OSMRXBXPwlcAAAQZX7NbGQ':
+                    return 0;
+
+                    case 'xuKFCUbzzFgAAAQZWWEujw':
+                    return 270;
+
+                    case 'nqfRmHR8NYMAAAQZWVImZQ':
+                    return -280;
+
+                    case 'GAPEvOsCQ7cAAAQZX8T8JQ':
+                    return -170;
+
+                    case '9c405LAkKxQAAAQZX7H8WA':
+                    return 0;
+
+                    case 'VT7ElvLeGYoAAAQZX7Na_w':
+                    return 50;
+
+                    case 'ZrmtdaiVWq0AAAQZXwxOUg':
+                    return -150;
+
+                    default:
+                    0
                     return false;
                 }
             }
