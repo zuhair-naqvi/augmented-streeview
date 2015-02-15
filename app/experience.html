@@ -116,8 +116,8 @@
             <h4>Navigation</h4>
             <ul>
                 <li><a href="/#artist">The Artist</a></li>
-                <li><strong><a href="/experience">The Experience</a></strong></li>
-                <li><a href="/more">Learn More</a></li>
+                <li><strong><a href="/experience.html">Experience It</a></strong></li>
+                <li><a href="#">Learn More</a></li>
             </ul>
         </nav>
 
@@ -298,7 +298,7 @@
               var ngv = new google.maps.LatLng(-37.82244,144.969512);
               var mapOptions = {
                 center: ngv,
-                zoom: 17,
+                zoom: 16,
                 styles: mapStyles,
                 disableDefaultUI: true
               };
@@ -332,7 +332,7 @@
               map.setStreetView(panorama);
               console.log(panorama.getLinks());
               google.maps.event.addListener(panorama, 'pano_changed', function() {
-                  showPanoActions(panorama.getPano());
+                  showPanoActions(panorama.getPano(), panorama);
                   panorama.setOptions({
                     pov: getPanoPov(panorama.getPano())
                   });
@@ -413,13 +413,13 @@
                     return 'Federation Square';
 
                     case 'OSMRXBXPwlcAAAQZX7NbGQ':
-                    return 'Feel like a coffee?';
+                    return 'Cafes';
 
                     case 'xuKFCUbzzFgAAAQZWWEujw':
-                    return 'How about fine Japanese food?';
+                    return 'Queen Victoria Bridge';
 
                     case 'nqfRmHR8NYMAAAQZWVImZQ':
-                    return 'NGV';
+                    return 'The National Gallery';
 
                     case 'GAPEvOsCQ7cAAAQZX8T8JQ':
                     return 'Room 1';
@@ -472,12 +472,15 @@
                 }
             }
 
-            function showPanoActions(panoId)
+            var rotationInterval;
+
+            function showPanoActions(panoId, panorama)
             {
                 switch (panoId){
                     case 'Rv_Zd5dpDeEAAAQZWWEn2A':
                         //fedsquare
                         $('.pano-action').hide();
+                        window.clearInterval(rotationInterval);
                     break;
 
                     case 'OSMRXBXPwlcAAAQZX7NbGQ':
@@ -485,22 +488,31 @@
                         console.log('coffee!');
                         $('.pano-action').hide();
                         $('#coffeeVideoIcon').fadeIn(1000);
+                        window.clearInterval(rotationInterval);
                     break;
 
                     case 'xuKFCUbzzFgAAAQZWWEujw':
                         //Sake
                         $('.pano-action').hide();
                         $('#sakeTripadvisor').fadeIn(1000);
+                        window.clearInterval(rotationInterval);
                     break;
 
                     case 'nqfRmHR8NYMAAAQZWVImZQ':
                         //NGV
                         $('.pano-action').hide();
+                        window.clearInterval(rotationInterval);
                     break;
 
                     case 'GAPEvOsCQ7cAAAQZX8T8JQ':
                         //Room 1
                         $('.pano-action').hide();
+                    rotationInterval = window.setInterval(function() {
+                    var pov = panorama.getPov();
+                    pov.heading += 0.01;
+                    panorama.setPov(pov);
+                    }, 1);
+
                     break;
 
                     case '9c405LAkKxQAAAQZX7H8WA':
@@ -533,6 +545,8 @@
                     frameheight: '473px'
                 }); 
             });
+
+
         </script>
         <!-- build:js scripts/main.min.js -->
         <script src="scripts/main.js"></script>
