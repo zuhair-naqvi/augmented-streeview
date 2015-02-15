@@ -77,6 +77,38 @@
         bottom: -14px;
         left: 25px;
         }        
+
+        .bubble-left 
+        {
+        position: relative;
+        width: 250px;
+        height: 500px;
+        padding: 0px;
+        background: #FFFFFF;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        }
+
+        .bubble-left:after 
+        {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 15px 15px 15px 0;
+        border-color: transparent #FFFFFF;
+        display: block;
+        width: 0;
+        z-index: 1;
+        left: -15px;
+        top: 265px;
+        }
+
+        .bubble-left a, a:visited
+        {
+            color: #fff;
+        }
+
         </style>
     </head>
     <body>
@@ -101,6 +133,23 @@
                     </center>                    
                 </div>
             </div>
+            <div id="sakeTripadvisor" class="pano-action" style="position:absolute;left:1010px;top:100px;z-index:1000;display:none">
+                <div class="bubble-left">
+                    <center>
+                   <div id="TA_selfserveprop761" class="TA_selfserveprop" style="padding-top:5px">
+                    <ul id="AUpSoU4C31fN" class="TA_links 8HYI3him3NhW">
+                    <li id="0RclO2sxn" class="FTwIoLWZ28N">
+                    <a target="_blank" href="http://www.tripadvisor.com.au/"><img src="http://www.tripadvisor.com.au/img/cdsi/img2/branding/150_logo-11900-2.png" alt="TripAdvisor"/></a>
+                    </li>
+                    </ul>
+                    </div>
+                    <script src="http://www.jscache.com/wejs?wtype=selfserveprop&amp;uniq=761&amp;locationId=3447982&amp;lang=en_AU&amp;rating=true&amp;nreviews=5&amp;writereviewlink=true&amp;popIdx=true&amp;iswide=false&amp;border=true&amp;display_version=2"></script>
+                    <a class="button--primary venobox" data-type="iframe" href="http://widget.dimmi.com.au/step1?restaurantId=27086&referrerUrl=http%3A%2F%2Fwww.tripadvisor.com&showHeader=True">Find a Table</a>
+                    </center>
+                </div>
+            </div>
+
+
             <div id="pano" style="width:100%; height: 750px; margin-top: -18px"></div>
             <div id="map-canvas" style="position:fixed; left: 90px; top: -280px; width: 300px; height: 250px"></div>        
         <script type="text/javascript">
@@ -441,6 +490,7 @@
                     case 'xuKFCUbzzFgAAAQZWWEujw':
                         //Sake
                         $('.pano-action').hide();
+                        $('#sakeTripadvisor').fadeIn(1000);
                     break;
 
                     case 'nqfRmHR8NYMAAAQZWVImZQ':
