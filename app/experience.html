@@ -83,7 +83,7 @@
         {
         position: relative;
         width: 250px;
-        height: 500px;
+        height: 80px;
         padding: 0px;
         background: #FFFFFF;
         -webkit-border-radius: 3px;
@@ -102,7 +102,7 @@
         width: 0;
         z-index: 1;
         left: -15px;
-        top: 265px;
+        top: 25px;
         }
 
         .bubble-left a, a:visited
@@ -136,22 +136,28 @@
                     </center>                    
                 </div>
             </div>
-<!--             <div id="sakeTripadvisor" class="pano-action" style="position:absolute;left:1010px;top:100px;z-index:1000;display:none">
+            <div id="sakeTripadvisor" class="pano-action" style="position:absolute;left:1010px;top:100px;z-index:1000;display:none">
                 <div class="bubble-left">
                     <center>
-                   <div id="TA_selfserveprop761" class="TA_selfserveprop" style="padding-top:5px">
-                    <ul id="AUpSoU4C31fN" class="TA_links 8HYI3him3NhW">
-                    <li id="0RclO2sxn" class="FTwIoLWZ28N">
-                    <a target="_blank" href="http://www.tripadvisor.com.au/"><img src="http://www.tripadvisor.com.au/img/cdsi/img2/branding/150_logo-11900-2.png" alt="TripAdvisor"/></a>
-                    </li>
-                    </ul>
+                    <a class="button--primary venobox" data-type="inline" href="#sakeInfo">Sake Bar &amp; Restaurant</a>
+                    <div id="sakeInfo" style="display:none;">
+                       
+                        <div id="TA_selfserveprop761" class="TA_selfserveprop" style="padding-top:5px;float:left;clear:right">
+                        <ul id="AUpSoU4C31fN" class="TA_links 8HYI3him3NhW">
+                        <li id="0RclO2sxn" class="FTwIoLWZ28N">
+                        <a target="_blank" href="http://www.tripadvisor.com.au/"><img src="http://www.tripadvisor.com.au/img/cdsi/img2/branding/150_logo-11900-2.png" alt="TripAdvisor"/></a>
+                        </li>
+                        </ul>
+                        </div>
+                        <script src="http://www.jscache.com/wejs?wtype=selfserveprop&amp;uniq=761&amp;locationId=3447982&amp;lang=en_AU&amp;rating=true&amp;nreviews=5&amp;writereviewlink=true&amp;popIdx=true&amp;iswide=false&amp;border=true&amp;display_version=2"></script>                               
+      
+                        <iframe src="http://widget.dimmi.com.au/step1?restaurantId=27086&referrerUrl=http%3A%2F%2Fwww.tripadvisor.com&showHeader=True" height="500" width="300"></iframe>                               
+                     
                     </div>
-                    <script src="http://www.jscache.com/wejs?wtype=selfserveprop&amp;uniq=761&amp;locationId=3447982&amp;lang=en_AU&amp;rating=true&amp;nreviews=5&amp;writereviewlink=true&amp;popIdx=true&amp;iswide=false&amp;border=true&amp;display_version=2"></script>
-                    <a class="button--primary venobox" data-type="iframe" href="http://widget.dimmi.com.au/step1?restaurantId=27086&referrerUrl=http%3A%2F%2Fwww.tripadvisor.com&showHeader=True">Find a Table</a>
                     </center>
                 </div>
             </div>
- -->
+
 <!--             <div id="panFrame" style="position:relative; width:1600px; height:780px; overflow:hidden; margin-top: -40px">
             <div id="panDiv" style="position:absolute;top:0px;left:0px; width:1600px; height:780px; margin-top: -40px"></div>
             <div id="indexDiv" style="width:480px; height:320px"></div>
@@ -236,12 +242,11 @@
                     },
                     overlays: [
                         {
-                            markerEl: $('#coffeeVideoIcon'),
+                            markerId: 'coffeeVideoIcon',
                             height: 80,
                             width: 100,
                             location: new google.maps.LatLng(-37.8180354,144.9683074),
-                            elevation: 3,
-                            markerPitch: 0
+                            elevation: 3
                         }
                     ]
                 });      
@@ -250,7 +255,7 @@
                     links: [
                     ],
                     mapOptions: {
-                        center: new google.maps.LatLng(-37.819183,144.9683566),
+                        center: new google.maps.LatLng(-37.819111,144.968167),
                         zoom: 16,
                         mapTypeId: google.maps.MapTypeId.ROADMAP,
                         scaleControl: false,
@@ -259,13 +264,22 @@
                     panoOptions: {
                         pano: 'xuKFCUbzzFgAAAQZWWEujw',
                         pov: {
-                              heading: 155,
-                              pitch:-3
+                              heading: 110,
+                              pitch:-5
                             },
                         zoom: 0.5,
                         zoomControl: false,
                         addressControl: false
-                    }           
+                    },
+                    overlays: [
+                        {
+                            markerId: 'sakeTripadvisor',
+                            height: 80,
+                            width: 250,
+                            location: new google.maps.LatLng(-37.819233,144.9683566),
+                            elevation: 0,
+                        }                    
+                    ]        
                 });    
 
                 Stage.play(0);
