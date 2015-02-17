@@ -16,6 +16,8 @@
  *  limitations under the License
  *
  */
+
+
 (function () {
   'use strict';
 
@@ -47,4 +49,5 @@
       closeMenu();
     }
   });
+
 })();

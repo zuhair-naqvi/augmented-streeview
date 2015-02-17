@@ -47,6 +47,7 @@
 
         <link rel="stylesheet" href="styles/venobox.css" type="text/css" media="screen" />
         <script type="text/javascript" src="scripts/venobox.min.js"></script>
+        <script type="text/javascript" src="scripts/vrmaps.js"></script>
 
         <style type="text/css">
         body {
@@ -115,9 +116,9 @@
         <nav class="navdrawer-container promote-layer">
             <h4>Navigation</h4>
             <ul>
-                <li><a href="/#artist">The Artist</a></li>
+                <li><a href="/#artist">The Event</a></li>
                 <li><strong><a href="/experience.html">Experience It</a></strong></li>
-                <li><a href="#">Learn More</a></li>
+                <li><a href="http://www.jeanpaulgaultier.com/en" target="_blank">Learn More</a></li>
             </ul>
         </nav>
 
@@ -125,15 +126,17 @@
             
 
         </main>
-            <div id="coffeeVideoIcon" class="pano-action" style="position:absolute;left:450px;top:200px;z-index:1000;display:none">
+
+<!--         <div id="markers"></div> -->
+<!--             <div id="coffeeVideoIcon" class="pano-action" style="position:absolute;left:450px;top:200px;z-index:1000;display:none">
                 <div class="bubble">
                     <center>
                     <a class="venobox" data-type="youtube" href="http://youtu.be/zro0mJ9V7ZQ"><img src="http://www.cristina.it/static/img/play.06b37586919c.png" height="60px" style="border:0" /></a>
                         
                     </center>                    
                 </div>
-            </div>
-            <div id="sakeTripadvisor" class="pano-action" style="position:absolute;left:1010px;top:100px;z-index:1000;display:none">
+            </div> -->
+<!--             <div id="sakeTripadvisor" class="pano-action" style="position:absolute;left:1010px;top:100px;z-index:1000;display:none">
                 <div class="bubble-left">
                     <center>
                    <div id="TA_selfserveprop761" class="TA_selfserveprop" style="padding-top:5px">
@@ -148,410 +151,117 @@
                     </center>
                 </div>
             </div>
+ -->
+<!--             <div id="panFrame" style="position:relative; width:1600px; height:780px; overflow:hidden; margin-top: -40px">
+            <div id="panDiv" style="position:absolute;top:0px;left:0px; width:1600px; height:780px; margin-top: -40px"></div>
+            <div id="indexDiv" style="width:480px; height:320px"></div>
+            <div id="mapDiv" style="width:300px; height:250px; margin-left: 30px; margin-top: 110px"></div>
+            <span id="positionDiv"></span>
+            <div id="markerInfo"></div> -->
 
-
+    
             <div id="pano" style="width:100%; height: 750px; margin-top: -18px"></div>
             <div id="map-canvas" style="position:fixed; left: 90px; top: -280px; width: 300px; height: 250px"></div>        
+
+        <!-- build:js scripts/main.min.js -->
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
+
         <script type="text/javascript">
-            var mapStyles = [
-                {
-                    "featureType": "all",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "all",
-                    "elementType": "labels.text.stroke",
-                    "stylers": [
-                        {
-                            "color": "#000000"
-                        },
-                        {
-                            "lightness": 13
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#000000"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "color": "#144b53"
-                        },
-                        {
-                            "lightness": 14
-                        },
-                        {
-                            "weight": 1.4
-                        }
-                    ]
-                },
-                {
-                    "featureType": "landscape",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "color": "#08304b"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#0c4152"
-                        },
-                        {
-                            "lightness": 5
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#000000"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "color": "#0b434f"
-                        },
-                        {
-                            "lightness": 25
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#000000"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "color": "#0b3d51"
-                        },
-                        {
-                            "lightness": 16
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.local",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#000000"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "transit",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "color": "#146474"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "water",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "color": "#021019"
-                        }
-                    ]
-                }
-            ];
-
-            var sakeRestaurantPoint = new google.maps.LatLng(-37.819671,144.968055);
-
-            function initialize() {
-                //-37.82244,144.969512,3a,75y,254.43h,97.26t
-              var ngv = new google.maps.LatLng(-37.82244,144.969512);
-              var mapOptions = {
-                center: ngv,
-                zoom: 16,
-                styles: mapStyles,
-                disableDefaultUI: true
-              };
-
-
-
-              var map = new google.maps.Map(
-                  document.getElementById('map-canvas'), mapOptions);
-
-              var myPanoid = "Rv_Zd5dpDeEAAAQZWWEn2A";
-
-              var panoramaOptions = {
-                pano: myPanoid,
-                pov: {
-                  heading: 75,
-                  pitch:0
-                },
-                zoom: 0.5,
-                zoomControl: false,
-                addressControl: false,            
-                linksControl: true,
-                panControl: true,
-                panControlOptions: {
-                    position: google.maps.ControlPosition.LEFT_BOTTOM
-                },
-                enableCloseButton: false,
-                visible:true                
-              };
-
-              var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
-              map.setStreetView(panorama);
-              console.log(panorama.getLinks());
-              google.maps.event.addListener(panorama, 'pano_changed', function() {
-                  showPanoActions(panorama.getPano(), panorama);
-                  panorama.setOptions({
-                    pov: getPanoPov(panorama.getPano())
-                  });
-              });
-            google.maps.event.addListener(panorama, 'links_changed', function() {
-                  var links =  panorama.getLinks();
-                  console.log(links);
-
-                  for (var i in links) {
-                    links[i].description = getPanoLinkName(links[i].pano);
-                    links[i].heading = getPanoLinkHeading(links[i].pano);
-                  }
-              });
-
-            // window.setInterval(function() {
-            // var pov = panorama.getPov();
-            // pov.heading += 0.1;
-            // panorama.setPov(pov);
-            // }, 1);
-
-
-
-
-            }
-
-            function getPanoPov(panoId){
-                switch (panoId){
-                    case 'Rv_Zd5dpDeEAAAQZWWEn2A':
-                    return {
-                      heading: 75,
-                      pitch:0
-                    };
-                    case 'OSMRXBXPwlcAAAQZX7NbGQ':
-                    return {
-                      heading: 155,
-                      pitch:-3
-                    };
-                    case 'xuKFCUbzzFgAAAQZWWEujw':                    
-                    return {
-                      heading: 110,
-                      pitch:-5
-                    };
-                    case 'nqfRmHR8NYMAAAQZWVImZQ':
-                    return {
-                      heading: 220,
-                      pitch:12
-                    };
-                    case 'GAPEvOsCQ7cAAAQZX8T8JQ':
-                    return {
-                      heading: 60,
-                      pitch:12
-                    };
-                    case '9c405LAkKxQAAAQZX7H8WA':
-                    return {
-                      heading: -200,
-                      pitch:0
-                    };
-                    case 'VT7ElvLeGYoAAAQZX7Na_w':
-                    return {
-                      heading: 195,
-                      pitch:12
-                    };
-                    case 'ZrmtdaiVWq0AAAQZXwxOUg':
-                    return {
-                      heading: 70,
-                      pitch:6
-                    };
-                    default:
-                    console.log(panoId);
-                    return false;
-                }
-            }
-
-            function getPanoLinkName(panoId)
-            {
-                switch (panoId){
-                    case 'Rv_Zd5dpDeEAAAQZWWEn2A':
-                    return 'Federation Square';
-
-                    case 'OSMRXBXPwlcAAAQZX7NbGQ':
-                    return 'Cafes';
-
-                    case 'xuKFCUbzzFgAAAQZWWEujw':
-                    return 'Queen Victoria Bridge';
-
-                    case 'nqfRmHR8NYMAAAQZWVImZQ':
-                    return 'The National Gallery';
-
-                    case 'GAPEvOsCQ7cAAAQZX8T8JQ':
-                    return 'Room 1';
-
-                    case '9c405LAkKxQAAAQZX7H8WA':
-                    return 'Room 2';
-
-                    case 'VT7ElvLeGYoAAAQZX7Na_w':
-                    return 'Room 3';
-
-                    case 'ZrmtdaiVWq0AAAQZXwxOUg':
-                    return 'The Golden Carousel';
-
-                    default:
-                    console.log(panoId);
-                    return false;
-                }
-            }
-
-            function getPanoLinkHeading(panoId)
-            {
-                switch (panoId){
-                    case 'Rv_Zd5dpDeEAAAQZWWEn2A':
-                    return 180;
-
-                    case 'OSMRXBXPwlcAAAQZX7NbGQ':
-                    return 0;
-
-                    case 'xuKFCUbzzFgAAAQZWWEujw':
-                    return 270;
-
-                    case 'nqfRmHR8NYMAAAQZWVImZQ':
-                    return -280;
-
-                    case 'GAPEvOsCQ7cAAAQZX8T8JQ':
-                    return -170;
-
-                    case '9c405LAkKxQAAAQZX7H8WA':
-                    return 0;
-
-                    case 'VT7ElvLeGYoAAAQZX7Na_w':
-                    return 50;
-
-                    case 'ZrmtdaiVWq0AAAQZXwxOUg':
-                    return -150;
-
-                    default:
-                    0
-                    return false;
-                }
-            }
-
-            var rotationInterval;
-
-            function showPanoActions(panoId, panorama)
-            {
-                switch (panoId){
-                    case 'Rv_Zd5dpDeEAAAQZWWEn2A':
-                        //fedsquare
-                        $('.pano-action').hide();
-                        window.clearInterval(rotationInterval);
-                    break;
-
-                    case 'OSMRXBXPwlcAAAQZX7NbGQ':
-                        //coffee
-                        console.log('coffee!');
-                        $('.pano-action').hide();
-                        $('#coffeeVideoIcon').fadeIn(1000);
-                        window.clearInterval(rotationInterval);
-                    break;
-
-                    case 'xuKFCUbzzFgAAAQZWWEujw':
-                        //Sake
-                        $('.pano-action').hide();
-                        $('#sakeTripadvisor').fadeIn(1000);
-                        window.clearInterval(rotationInterval);
-                    break;
-
-                    case 'nqfRmHR8NYMAAAQZWVImZQ':
-                        //NGV
-                        $('.pano-action').hide();
-                        window.clearInterval(rotationInterval);
-                    break;
-
-                    case 'GAPEvOsCQ7cAAAQZX8T8JQ':
-                        //Room 1
-                        $('.pano-action').hide();
-                    rotationInterval = window.setInterval(function() {
-                    var pov = panorama.getPov();
-                    pov.heading += 0.01;
-                    panorama.setPov(pov);
-                    }, 1);
-
-                    break;
-
-                    case '9c405LAkKxQAAAQZX7H8WA':
-                        //Room 2
-                        $('.pano-action').hide();
-                    break;
-
-                    case 'VT7ElvLeGYoAAAQZX7Na_w':
-                        //Room 3
-                        $('.pano-action').hide();
-                    break;
-
-                    case 'ZrmtdaiVWq0AAAQZXwxOUg':
-                    //The Golden Carousel
-                    $('.pano-action').hide();
-                    break;
-
-                    default:
-                    console.log(panoId);
-                    return false;
-                }
-            }
-
-            google.maps.event.addDomListener(window, 'load', initialize);
-
+            
             $(document).ready(function(){
                 /* default settings */
                 $('.venobox').venobox({
                     framewidth: '840px',        // default: ''
                     frameheight: '473px'
                 }); 
+
+                Stage.addScene({
+                    links: [
+                        {
+                            heading: 0,
+                            description: 'Coffee',
+                            pano: 'OSMRXBXPwlcAAAQZX7NbGQ'
+                        }
+                    ],                    
+                    mapOptions: {
+                        center: new google.maps.LatLng(-37.82244,144.969512),
+                        zoom: 16,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        scaleControl: false,
+                        mapTypeControl: false
+                    },
+                    panoOptions: {
+                        pano: 'Rv_Zd5dpDeEAAAQZWWEn2A',
+                        pov: {
+                              heading: 75,
+                              pitch:0
+                            },
+                        zoom: 0.5,
+                        zoomControl: false,
+                        addressControl: false
+                    }           
+                });
+
+                Stage.addScene({
+                    links: [
+                        {
+                            heading: 180,
+                            description: 'Fed Square',
+                            pano: 'Rv_Zd5dpDeEAAAQZWWEn2A'
+                        },
+                        {
+                            heading: 270,
+                            description: 'St Kilda Road',
+                            pano: 'xuKFCUbzzFgAAAQZWWEujw'
+                        }
+                    ],
+                    mapOptions: {
+                        center: new google.maps.LatLng(-37.817921,144.968128),
+                        zoom: 16,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        scaleControl: false,
+                        mapTypeControl: false
+                    },
+                    panoOptions: {
+                        pano: 'OSMRXBXPwlcAAAQZX7NbGQ',
+                        pov: {
+                              heading: 155,
+                              pitch:-3
+                            },
+                        zoom: 0.5,
+                        zoomControl: false,
+                        addressControl: false
+                    }           
+                });      
+
+                Stage.addScene({
+                    links: [
+                    ],
+                    mapOptions: {
+                        center: new google.maps.LatLng(-37.819183,144.9683566),
+                        zoom: 16,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        scaleControl: false,
+                        mapTypeControl: false
+                    },
+                    panoOptions: {
+                        pano: 'xuKFCUbzzFgAAAQZWWEujw',
+                        pov: {
+                              heading: 155,
+                              pitch:-3
+                            },
+                        zoom: 0.5,
+                        zoomControl: false,
+                        addressControl: false
+                    }           
+                });    
+
+                Stage.play(0);
             });
 
 
         </script>
-        <!-- build:js scripts/main.min.js -->
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
-
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
