@@ -128,14 +128,14 @@
         </main>
 
 <!--         <div id="markers"></div> -->
-<!--             <div id="coffeeVideoIcon" class="pano-action" style="position:absolute;left:450px;top:200px;z-index:1000;display:none">
+            <div id="coffeeVideoIcon" class="pano-action" style="position:absolute;left:450px;top:200px;z-index:1000;display:none">
                 <div class="bubble">
                     <center>
                     <a class="venobox" data-type="youtube" href="http://youtu.be/zro0mJ9V7ZQ"><img src="http://www.cristina.it/static/img/play.06b37586919c.png" height="60px" style="border:0" /></a>
                         
                     </center>                    
                 </div>
-            </div> -->
+            </div>
 <!--             <div id="sakeTripadvisor" class="pano-action" style="position:absolute;left:1010px;top:100px;z-index:1000;display:none">
                 <div class="bubble-left">
                     <center>
@@ -200,7 +200,8 @@
                         zoom: 0.5,
                         zoomControl: false,
                         addressControl: false
-                    }           
+                    },
+                    overlays: []        
                 });
 
                 Stage.addScene({
@@ -232,7 +233,17 @@
                         zoom: 0.5,
                         zoomControl: false,
                         addressControl: false
-                    }           
+                    },
+                    overlays: [
+                        {
+                            markerEl: $('#coffeeVideoIcon'),
+                            height: 80,
+                            width: 100,
+                            location: new google.maps.LatLng(-37.8180354,144.9683074),
+                            elevation: 3,
+                            markerPitch: 0
+                        }
+                    ]
                 });      
 
                 Stage.addScene({
