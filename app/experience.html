@@ -44,7 +44,7 @@
         <!-- endbuild -->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry"></script>
         <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="styles/venobox.css" type="text/css" media="screen" />
         <script type="text/javascript" src="scripts/venobox.min.js"></script>
         <script type="text/javascript" src="scripts/vrmaps.js"></script>
@@ -59,7 +59,7 @@
         width: 75px;
         height: 60px;
         padding: 0px;
-        background: #fff;
+        background: #f0f0f0;
         -webkit-border-radius: 4px;
         -moz-border-radius: 4px;
         border-radius: 4px;
@@ -71,7 +71,7 @@
         position: absolute;
         border-style: solid;
         border-width: 15px 12px 0;
-        border-color: #fff transparent;
+        border-color: #f0f0f0 transparent;
         display: block;
         width: 0;
         z-index: 1;
@@ -82,8 +82,8 @@
         .bubble-left 
         {
         position: relative;
-        width: 250px;
-        height: 80px;
+        width: 80px;
+        height: 60px;
         padding: 0px;
         background: #FFFFFF;
         -webkit-border-radius: 3px;
@@ -105,9 +105,17 @@
         top: 25px;
         }
 
-        .bubble-left a, a:visited
+        .bubble a, a:visited
         {
-            color: #fff;
+            color: #E91E63;
+            text-decoration: none;
+            line-height: 3.5em;
+        }
+
+        .fa-icon {
+            font-family: FontAwesome;
+            font-style: normal;
+            font-size: 38px;
         }
 
         </style>
@@ -137,12 +145,12 @@
                 </div>
             </div>
             <div id="sakeTripadvisor" class="pano-action" style="position:absolute;left:1010px;top:100px;z-index:1000;display:none">
-                <div class="bubble-left">
+                <div class="bubble">
                     <center>
-                    <a class="button--primary venobox" data-type="inline" href="#sakeInfo">Sake Bar &amp; Restaurant</a>
+                    <a class="venobox" data-type="inline" href="#sakeInfo"><i class="fa-icon">&#xf0f5;</i></a>
                     <div id="sakeInfo" style="display:none;">
-                       
-                        <div id="TA_selfserveprop761" class="TA_selfserveprop" style="padding-top:5px;float:left;clear:right">
+                         <iframe src="http://widget.dimmi.com.au/step1?restaurantId=27086&referrerUrl=http%3A%2F%2Fwww.tripadvisor.com&showHeader=True" height="500" width="300" style="padding:0px;float:left;clear:right"></iframe>
+                        <div id="TA_selfserveprop761" class="TA_selfserveprop" style="padding:0px;float:left;clear:right">
                         <ul id="AUpSoU4C31fN" class="TA_links 8HYI3him3NhW">
                         <li id="0RclO2sxn" class="FTwIoLWZ28N">
                         <a target="_blank" href="http://www.tripadvisor.com.au/"><img src="http://www.tripadvisor.com.au/img/cdsi/img2/branding/150_logo-11900-2.png" alt="TripAdvisor"/></a>
@@ -151,12 +159,23 @@
                         </div>
                         <script src="http://www.jscache.com/wejs?wtype=selfserveprop&amp;uniq=761&amp;locationId=3447982&amp;lang=en_AU&amp;rating=true&amp;nreviews=5&amp;writereviewlink=true&amp;popIdx=true&amp;iswide=false&amp;border=true&amp;display_version=2"></script>                               
       
-                        <iframe src="http://widget.dimmi.com.au/step1?restaurantId=27086&referrerUrl=http%3A%2F%2Fwww.tripadvisor.com&showHeader=True" height="500" width="300"></iframe>                               
+                                                     
                      
                     </div>
                     </center>
-                </div>
+                </div>                
+
             </div>
+            <div id="Room1" class="pano-action" style="position:absolute;left:450px;top:200px;z-index:1000;display:none">
+                <div class="bubble">
+                    <center>
+                    <a class="venobox" data-type="youtube" href="http://youtu.be/2QkYE-4TQBE?autoplay=1"><img src="http://www.cristina.it/static/img/play.06b37586919c.png" height="60px" style="border:0" /></a>
+                    </center>                    
+                </div>
+            </div>   
+            <div id="JPGIntro" class="pano-action" style="position:absolute;left:450px;top:200px;z-index:1000;display:none">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/f7_uJlntor0" frameborder="0" allowfullscreen></iframe>                
+            </div>   
 
 <!--             <div id="panFrame" style="position:relative; width:1600px; height:780px; overflow:hidden; margin-top: -40px">
             <div id="panDiv" style="position:absolute;top:0px;left:0px; width:1600px; height:780px; margin-top: -40px"></div>
@@ -176,13 +195,24 @@
         <script type="text/javascript">
             
             $(document).ready(function(){
-                /* default settings */
-                $('.venobox').venobox({
-                    framewidth: '840px',        // default: ''
+
+                $('#coffeeVideoIcon /deep/ .venobox').venobox({
+                    framewidth: '840px',
                     frameheight: '473px'
                 }); 
 
+                $('#sakeTripadvisor /deep/ .venobox').venobox({
+                    framewidth: '540px',
+                    frameheight: '400px'
+                }); 
+
+                $('#Room1 /deep/ .venobox').venobox({
+                    framewidth: '100%',
+                    frameheight: '750px'
+                }); 
+
                 Stage.addScene({
+                    showMap: true,
                     links: [
                         {
                             heading: 0,
@@ -211,6 +241,7 @@
                 });
 
                 Stage.addScene({
+                    showMap: true,
                     links: [
                         {
                             heading: 180,
@@ -252,7 +283,18 @@
                 });      
 
                 Stage.addScene({
+                    showMap: true,
                     links: [
+                        {
+                            heading: -280,
+                            description: 'National Gallery of Victoria',
+                            pano: 'nqfRmHR8NYMAAAQZWVImZQ'
+                        },
+                        {
+                            heading: -30,
+                            description: 'Fed Square',
+                            pano: 'Rv_Zd5dpDeEAAAQZWWEn2A'
+                        },                   
                     ],
                     mapOptions: {
                         center: new google.maps.LatLng(-37.819111,144.968167),
@@ -279,6 +321,115 @@
                             location: new google.maps.LatLng(-37.819233,144.9683566),
                             elevation: 0,
                         }                    
+                    ]        
+                });    
+
+                Stage.addScene({
+                    showMap: false,
+                    links: [
+                        {
+                            heading: 180,
+                            description: 'Enter',
+                            pano: 'ZrmtdaiVWq0AAAQZXwxOUg'
+                        },
+                        {
+                            heading: 270,
+                            description: 'St Kilda Road',
+                            pano: 'xuKFCUbzzFgAAAQZWWEujw'
+                        }
+                    ],
+                    mapOptions: {
+                        center: new google.maps.LatLng(-37.819911,144.968167),
+                        zoom: 16,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        scaleControl: false,
+                        mapTypeControl: false
+                    },
+                    panoOptions: {
+                        pano: 'nqfRmHR8NYMAAAQZWVImZQ',
+                        pov: {
+                              heading: 220,
+                              pitch:12
+                            },
+                        zoom: 0.5,
+                        zoomControl: false,
+                        addressControl: false
+                    },
+                    overlays: [       
+                      {
+                            markerId: 'JPGIntro',
+                            height: 80,
+                            width: 100,
+                            location: new google.maps.LatLng(-37.820693,144.968454),
+                            elevation: 15
+                        }                              
+                    ]        
+                }); 
+
+                Stage.addScene({
+                    showMap: false,
+                    links: [
+                        {
+                            heading: 180,
+                            description: 'Room 1',
+                            pano: 'GAPEvOsCQ7cAAAQZX8T8JQ'
+                        },
+                        {
+                            heading: 270,
+                            description: 'Exit',
+                            pano: 'nqfRmHR8NYMAAAQZWVImZQ'
+                        }
+                    ],
+                    mapOptions: {
+                        center: new google.maps.LatLng(-37.822884,144.969207),
+                        zoom: 16,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        scaleControl: false,
+                        mapTypeControl: false
+                    },
+                    panoOptions: {
+                        pano: 'ZrmtdaiVWq0AAAQZXwxOUg',
+                        pov: {
+                              heading: 70,
+                              pitch:6
+                            },
+                        zoom: 0.5,
+                        zoomControl: false,
+                        addressControl: false
+                    },
+                    overlays: [ 
+                    ]        
+                }); 
+
+                Stage.addScene({
+                    showMap: false,
+                    links: [
+                    ],   
+                    mapOptions: {
+                        center: new google.maps.LatLng(-37.822884,144.969207),
+                        zoom: 16,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        scaleControl: false,
+                        mapTypeControl: false
+                    },
+                    panoOptions: {
+                        pano: 'GAPEvOsCQ7cAAAQZX8T8JQ',
+                        pov: {
+                              heading: 60,
+                              pitch:12
+                            },
+                        zoom: 0.5,
+                        zoomControl: false,
+                        addressControl: false
+                    },
+                    overlays: [ 
+                      {
+                            markerId: 'Room1',
+                            height: 80,
+                            width: 100,
+                            location: new google.maps.LatLng(-37.822693,144.969454),
+                            elevation: 7
+                        }
                     ]        
                 });    
 

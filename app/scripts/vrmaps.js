@@ -136,6 +136,15 @@ var Stage = (function(){
 		updateOverays: function(){
 			var overlays = currentScene.overlays;
 
+			if(!currentScene.showMap)
+			{
+				$('#'+mapEl).fadeOut(1000);
+			}
+			else
+			{
+				$('#'+mapEl).fadeIn(1000);
+			}
+
 			if(overlays.length > 0)
 			{
 				overlays.forEach(function(overlay){
