@@ -85,12 +85,13 @@ var Stage = (function(){
 
 			var markerEl = $('#'+overlay.markerId)[0];
 			console.log(markerEl);
-			markerEl.style.display = "block";
+			// markerEl.style.display = "block";
 			markerEl.style.left = x + "px";
 			markerEl.style.top = y + "px";
 			markerEl.style.width = wd + "px";
 			markerEl.style.height = ht + "px";
 			markerEl.style.zIndex = Math.floor(1000000 / (overlay.distance + 1));
+			$('#'+overlay.markerId).fadeIn(1000);
 
 		}		
 	}
